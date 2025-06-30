@@ -50,7 +50,7 @@ But the cherry on top is **Drizzle Studio**, a GUI you can run locally to manage
 To get started, you'll first need a relational database.  
 Drizzle is designed to run on any JS runtime like Node.js, Bun and Deno, as well as Edge runtimes like Cloudflare workers.  
 
-## installation 
+## installation and connection to the database
 
 - install Drizzle: `npm i drizzle-orm`
 - install your database driver: `npm i <db_driver>`
@@ -59,7 +59,20 @@ Drizzle is designed to run on any JS runtime like Node.js, Bun and Deno, as well
 Alternatively, you can use the Drizzle Setup CLI for one-command setup: `npx drizzle-setup`  
 This tool guides you through selecting your database and installs all required packages automatically.
 
-## Connection to DB
+- then connect to the database in your TypeScript code (index.ts)
+- before starting to make queries, you need to create a `schema.ts` file
+  - in this schema file, define your **tables** using the `pgTable` function
+  - each table has a name followed by columns defined in a JavaScript object, like in the example below
+    ```ts
+    export const users = pgTable('users', {
+      id: serial('id', primaryKey(),
+      name: text('name'),
+      email: text('email').unique(),
+      createdAt: timestamp('created_at').notNull().defaultNow()
+    });
+    ```
+  - columns are given constraints with JS functions that match their SQL equivalent, such as `notNull()`
+  - once a table is defined, we can reference it in other tables to create relationships with foreign keys
+  - optionally, we can use the `relations()` function to simplify relational queries and joints
 
-- then connect to the database in your TypeScript code
 
