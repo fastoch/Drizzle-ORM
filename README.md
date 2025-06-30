@@ -2,7 +2,7 @@ src:
 - https://www.youtube.com/watch?v=i_mAHOhpBSA (2024)
 - https://www.youtube.com/watch?v=7-NZ0MlPpJA (2024)
 
-# Intro
+# Intro (Fireship)
 
 Drizzle ORM is a lightweight set of tools that makes type-safe object relational mapping (ORM) with your favorite  
 relational database fun again.  
@@ -74,5 +74,22 @@ This tool guides you through selecting your database and installs all required p
   - columns are given constraints with JS functions that match their SQL equivalent, such as `notNull()`
   - once a table is defined, we can reference it in other tables to create relationships with foreign keys
   - optionally, we can use the `relations()` function to simplify relational queries and joints
+
+---
+End of Fireship's video, start of Web Dev Simplified video
+---
+
+# Intro (WDS)
+
+To get a project set up and running with Drizzle, you'll see that there's 3 different components:
+- Drizzle ORM
+- Drizzle Kit
+- Drizzle Studio
+
+# Drizzle ORM
+
+- first, you need to choose your database type (MySQL, PostgreSQL, or SQLite)
+- then pick the database driver of your choice (check Drizzle documentation)
+
 
 
