@@ -106,15 +106,21 @@ export default defineConfig({
   schema: "./src/drizzle/schema.ts",
   out: "./src/drizzle/migrations",
   driver: "pg",
+  dbCredentials: {
+    connectionString: process.env.DATABASE_URL as string
+  },
+  verbose: true,
   
 ));
 ```
 - We need to specify the location of our schema.ts file.  
 - The `out` option specifies where our migration files are going to be put.
-  - whenever I do a DB migration, the migration files will be generated inside the "migrations" folder
+  - whenever I do a DB migration, the migration files will be generated inside the provided location
 - the `driver` option specifies which DB we are using (postgreSQL in our example)
-
+- the `dbCredentials` is for allowing the connection to our database
+- enabling the `verbose` option is to know exactly what changes will be made when we generate our migrations
+- 
 
 
 ---
-@5/56
+@7/56
