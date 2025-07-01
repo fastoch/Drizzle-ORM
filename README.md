@@ -181,7 +181,7 @@ This enables a "hot reload" workflow similar to what tools like nodemon provide 
 ## Applying our migration file to our database (migrate.ts)
 
 We need to create a file that lets us apply the migrations.  
-In your drizzle folder, which shoud be in your src folder, create a `migrate.ts` file.  
+In your /src/drizzle folder, create a `migrate.ts` file.  
 
 ```ts
 import "dotenv/config"
@@ -222,14 +222,27 @@ For that, let's add another useful script to our `package.json` file:
 ```
 This way, we can run `npm run db:migrate` to apply the migration to our database.
 
-# Testing Drizzle
+# Drizzle Studio
 
-In order to test all of that, there's essentially 2 things we can do:
-- Drizzle Studio
-- 
+In order to test all of that, we can use **Drizzle Studio**, which allows us to view our database inside our browser.  
+- run `npx drizzle-kit studio`
+- you might need to install an additional package: `npm i pg`
+- open up your browser and go to https://local.drizzle.studio
 
-## Drizzle Studio
+# Connecting to our database
+
+- create a `db.ts` file inside your /src/drizzle folder
+```ts
+import { drizzle } from "drizzle-orm/postgres-js"
+import * as schema from "./schema"
+import postgres from "postgres"
+
+
+```
+It was important to export all our future tables in our schema.ts file so that we can import them now.  
+
+
 
 
 ---
-@15/56
+@16/56
