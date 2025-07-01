@@ -81,10 +81,15 @@ End of Fireship's video, start of Web Dev Simplified video
 
 # Intro (WDS)
 
-To get a project set up and running with Drizzle, you'll see that there's 3 different components:
+There are 3 different components to Drizzle:
 - Drizzle ORM
 - Drizzle Kit
 - Drizzle Studio
+
+Drizzle allows you to work with 3 types of DB:
+- PostgreSQL
+- MySQL
+- SQLite
 
 # Getting started
 
@@ -124,8 +129,19 @@ export default defineConfig({
 # schema.ts
 
 ```ts
+import { pgTable, uuid } from "drizzle-orm/pg-core";
 
+export const UserTable = pgTable("user", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  
+});
 ```
+- the first line would import from "mysql-core" if we were to use a MySQL database.
+- We need to export classes for each one of our tables (one class = one table).
+- The `pgTable` function requires to be passed a table name, and the different columns of our table
+  - for the first column, we give it a key of "id" and we use the uuid function to name it "id"
+  - in most cases, the key and the name will be the exact same value
+ 
 
 ---
-@7/56
+@9/56
