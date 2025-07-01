@@ -91,18 +91,19 @@ Drizzle allows you to work with 3 types of DB:
 - MySQL
 - SQLite
 
-# Getting started
+# Drizzle Setup
 
-- first, you need to choose your database type (MySQL, PostgreSQL, or SQLite)
+- first, you need to choose your database type: MySQL, PostgreSQL, or SQLite
 - then pick the database driver of your choice (check Drizzle documentation)
 - install Drizzle and the DB driver of your choice: `npm i drizzle-orm postgres`
 - also install Drizzle Kit for handling things like DB migrations: `npm i -D drizzle-kit`
   - `-D` is shorthand for `--save-dev`, it installs the specified package and adds it to the devDependencies
-- we can also install another package via `npm i dotenv` to help us work with environment variables
-  - then create a `.env` file to store your environment variables such as `DATABASE_URL`
-- create a `drizzle.config.ts` config file at the root of your project
+  
+  We can also install another package via `npm i dotenv` to help us work with environment variables
+  - create a `.env` file at the root of your project to store your **environment variables** such as `DATABASE_URL`
+  - then create a `drizzle.config.ts` file, also at the root of your project
 
-# drizzle.config.ts
+## drizzle.config.ts
 
 ```ts
 import { defineConfig } from "drizzle-kit";
@@ -119,14 +120,14 @@ export default defineConfig({
 ));
 ```
 - We need to specify the location of our schema.ts file.  
-- The `out` option specifies where our migration files are going to be put.
+- The `out` option specifies the folder where our migration files are going to be put.
   - whenever I do a DB migration, the migration files will be generated inside the provided location
-- the `driver` option specifies which DB we are using (postgreSQL in our example)
+- the `driver` option specifies which DB driver we are using (postgres.js in our example)
 - the `dbCredentials` is for allowing the connection to our database
 - enabling the `verbose` option is to know exactly what changes will be made when we run a migration
 - enabling the `strict` option is to be prompted for confirming the changes we're about to make to our DB
 
-# schema.ts
+## schema.ts
 
 ```ts
 import { pgTable, uuid, serial, varchar } from "drizzle-orm/pg-core";
@@ -146,7 +147,7 @@ export const UserTable = pgTable("user", {
 The above code snippet is a simple schema for a single table.  
 Let's see how to do a migration for that.
 
-# Migration example
+## Migration file creation
 
 Now that we have our config file and our schema set up, we can do our migration just by running `npx drizzle-kit generate:<driver>`  
 If using the postgres.js driver, the command will be `npx drizzle-kit generate:pg`   
@@ -164,13 +165,71 @@ If we want to remove this migration for some reason:
 - run `npx drizzle-kit drop`
 - select the migration file you want to delete
 
-What is recommended is to add this to our package.json scripts:
+It's recommended to add a migration script to your package.json file:
 ```json
 "scripts": {
-
-}
+  "dev": "tsx watch src/main.ts",
+  "db:generate": "drizzle-kit generate:pg"
+},
 ```
+After adding this script, you can run `npm run db:generate` to generate your migration files.  
+
+**Side note**:   
+The `tsx watch` command is used to run a TypeScript file (or files) and automatically restart the process whenever any of the source files or their dependencies change. 
+This enables a "hot reload" workflow similar to what tools like nodemon provide for JavaScript, but optimized for TypeScript projects.  
+
+## Applying our migration file to our database (migrate.ts)
+
+We need to create a file that lets us apply the migrations.  
+In your drizzle folder, which shoud be in your src folder, create a `migrate.ts` file.  
+
+```ts
+import "dotenv/config"
+import { drizzle } from 'drizzle-orm/postgres-js';
+import { migrate } from 'drizzle-orm/postgres-js/migrator';
+import postgres from 'postgres';
+
+// create a new migration client
+const migrationClient = postgres(process.env.DATABASE_URL as string, { max: 1 });
+
+async function main() {
+  await migrate(drizzle(migrationClient), {
+  migrationsFolder: "./src/drizzle/migrations"
+  })
+
+  await migrationClient.end()  // close the migration client
+}
+
+main()
+```
+- the first line will load our environment variables located in the `.env` file
+- the last line calls the async function that will run the migration
+
+No matter which DB driver you use, the migrate.ts file will look almost exactly the same, except for the imports.  
+
+## DATABASE_URL and running the migration
+
+You can host your database wherever you want, you just need to specify its URL in your `.env` file.  
+Once that's done, you can finally run your `migrate.ts` file to apply the migration to your database.  
+
+For that, let's add another useful script to our `package.json` file:
+```json
+"scripts": {
+  "dev": "tsx watch src/main.ts",
+  "db:generate": "drizzle-kit generate:pg",
+  "db:migrate": "tsx src/drizzle/migrate.ts"
+},
+```
+This way, we can run `npm run db:migrate` to apply the migration to our database.
+
+# Testing Drizzle
+
+In order to test all of that, there's essentially 2 things we could use:
+- Drizzle Studio
+- 
+
+## Drizzle Studio
 
 
 ---
-@11/56
+@15/56
