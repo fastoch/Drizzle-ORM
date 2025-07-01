@@ -90,6 +90,7 @@ To get a project set up and running with Drizzle, you'll see that there's 3 diff
 
 - first, you need to choose your database type (MySQL, PostgreSQL, or SQLite)
 - then pick the database driver of your choice (check Drizzle documentation)
-
+- install Drizzle and the DB driver of your choice: `npm i drizzle-orm postgres`
+- 
 
 
