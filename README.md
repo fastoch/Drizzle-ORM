@@ -99,9 +99,9 @@ Drizzle allows you to work with 3 types of DB:
 - also install Drizzle Kit for handling things like DB migrations: `npm i -D drizzle-kit`
   - `-D` is shorthand for `--save-dev`, it installs the specified package and adds it to the devDependencies
   
-  We can also install another package via `npm i dotenv` to help us work with environment variables
-  - create a `.env` file at the root of your project to store your **environment variables** such as `DATABASE_URL`
-  - then create a `drizzle.config.ts` file, also at the root of your project
+We can also install another package via `npm i dotenv` to help us work with environment variables
+- create a `.env` file at the root of your project to store your **environment variables** such as `DATABASE_URL`
+- then create a `drizzle.config.ts` file, also at the root of your project
 
 ## drizzle.config.ts
 
@@ -224,7 +224,7 @@ This way, we can run `npm run db:migrate` to apply the migration to our database
 
 # Testing Drizzle
 
-In order to test all of that, there's essentially 2 things we could use:
+In order to test all of that, there's essentially 2 things we can do:
 - Drizzle Studio
 - 
 
