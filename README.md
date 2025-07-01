@@ -129,12 +129,12 @@ export default defineConfig({
 # schema.ts
 
 ```ts
-import { pgTable, uuid, serial } from "drizzle-orm/pg-core";
+import { pgTable, uuid, serial, varchar } from "drizzle-orm/pg-core";
 
 export const UserTable = pgTable("user", {
   id: uuid("id").primaryKey().defaultRandom(),
-  name: 
-});
+  name: varchar("name", { length: 100 }).notNull()
+})
 ```
 - the first line would import from "mysql-core" if we were to use a MySQL database.
 - We need to export classes for each one of our tables (one class = one table).
@@ -145,4 +145,4 @@ export const UserTable = pgTable("user", {
  
 
 ---
-@9/56
+@11/56
