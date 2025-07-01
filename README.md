@@ -166,7 +166,9 @@ If we want to remove this migration for some reason:
 
 What is recommended is to add this to our package.json scripts:
 ```json
+"scripts": {
 
+}
 ```
 
 
