@@ -1,6 +1,6 @@
 src:
-- https://www.youtube.com/watch?v=i_mAHOhpBSA (2024)
-- https://www.youtube.com/watch?v=7-NZ0MlPpJA (2024)
+- https://www.youtube.com/watch?v=i_mAHOhpBSA (Fireship 2024)
+- https://www.youtube.com/watch?v=7-NZ0MlPpJA (Web Dev Simplified 2024)
 
 # Intro (Fireship)
 
