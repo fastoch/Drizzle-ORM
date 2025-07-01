@@ -86,7 +86,7 @@ To get a project set up and running with Drizzle, you'll see that there's 3 diff
 - Drizzle Kit
 - Drizzle Studio
 
-# Drizzle ORM
+# Getting started
 
 - first, you need to choose your database type (MySQL, PostgreSQL, or SQLite)
 - then pick the database driver of your choice (check Drizzle documentation)
@@ -95,7 +95,24 @@ To get a project set up and running with Drizzle, you'll see that there's 3 diff
   - `-D` is shorthand for `--save-dev`, it installs the specified package and adds it to the devDependencies
 - we can also install another package via `npm i dotenv` to help us work with environment variables
   - then create a `.env` file to store your environment variables such as `DATABASE_URL`
- 
+- create a `drizzle.config.ts` config file at the root of your project
+
+# drizzle.config.ts
+
+```ts
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  schema: "./src/drizzle/schema.ts",
+  out: "./src/drizzle/migrations",
+  driver: "pg",
+  
+));
+```
+- We need to specify the location of our schema.ts file.  
+- The `out` option specifies where our migration files are going to be put.
+  - whenever I do a DB migration, the migration files will be generated inside the "migrations" folder
+- the `driver` option specifies which DB we are using (postgreSQL in our example)
 
 
 
