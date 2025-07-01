@@ -237,11 +237,16 @@ import { drizzle } from "drizzle-orm/postgres-js"
 import * as schema from "./schema"
 import postgres from "postgres"
 
-
+const client = postgres(process.env.DATABASE_URL as string)
+export const db = drizzle(client, { schema, logger: true })
 ```
 It was important to export all our future tables in our schema.ts file so that we can import them now.  
 
+Now that we have configure our db.ts file, we can access our database from anywhere in our project.  
 
+# main.ts
+
+Inside our /src folder, we should have a `main.ts` file.  
 
 
 ---
