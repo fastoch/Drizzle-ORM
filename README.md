@@ -91,6 +91,13 @@ To get a project set up and running with Drizzle, you'll see that there's 3 diff
 - first, you need to choose your database type (MySQL, PostgreSQL, or SQLite)
 - then pick the database driver of your choice (check Drizzle documentation)
 - install Drizzle and the DB driver of your choice: `npm i drizzle-orm postgres`
-- 
+- also install Drizzle Kit for handling things like DB migrations: `npm i -D drizzle-kit`
+  - `-D` is shorthand for `--save-dev`, it installs the specified package and adds it to the devDependencies
+- we can also install another package via `npm i dotenv` to help us work with environment variables
+  - then create a `.env` file to store your environment variables such as `DATABASE_URL`
+ 
 
 
+
+---
+@5/56
