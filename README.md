@@ -79,7 +79,7 @@ This tool guides you through selecting your database and installs all required p
 End of Fireship's video, start of Web Dev Simplified video
 ---
 
-# Intro (WDS)
+# Intro (WDS video)
 
 There are 3 different components to Drizzle:
 - Drizzle ORM
@@ -95,8 +95,8 @@ Drizzle allows you to work with 3 types of DB:
 
 - first, you need to choose your database type: MySQL, PostgreSQL, or SQLite
 - then pick the database driver of your choice (check Drizzle documentation)
-- install Drizzle and the DB driver of your choice: `npm i drizzle-orm postgres`
-- also install Drizzle Kit for handling things like DB migrations: `npm i -D drizzle-kit`
+- install Drizzle and the DB driver of your choice (postgre in our case): `npm i drizzle-orm pg`
+- also install Drizzle Kit for handling things like DB migrations: `npm i -D drizzle-kit tsx @types/pg`
   - `-D` is shorthand for `--save-dev`, it installs the specified package and adds it to the devDependencies
   
 We can also install another package via `npm i dotenv` to help us work with environment variables
@@ -111,13 +111,13 @@ import { defineConfig } from "drizzle-kit";
 export default defineConfig({
   schema: "./src/drizzle/schema.ts",
   out: "./src/drizzle/migrations",
-  driver: "pg",
+  dialect: "postgresql",
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL as string
+    url: process.env.DATABASE_URL as string
   },
   verbose: true,
   strict: true
-));
+});
 ```
 - We need to specify the location of our schema.ts file.  
 - The `out` option specifies the folder where our migration files are going to be put.
@@ -250,4 +250,4 @@ Inside our /src folder, we should have a `main.ts` file.
 
 
 ---
-@16/56
+@18/56
