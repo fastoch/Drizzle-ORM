@@ -129,11 +129,11 @@ export default defineConfig({
 # schema.ts
 
 ```ts
-import { pgTable, uuid } from "drizzle-orm/pg-core";
+import { pgTable, uuid, serial } from "drizzle-orm/pg-core";
 
 export const UserTable = pgTable("user", {
   id: uuid("id").primaryKey().defaultRandom(),
-  
+  name: 
 });
 ```
 - the first line would import from "mysql-core" if we were to use a MySQL database.
@@ -141,6 +141,7 @@ export const UserTable = pgTable("user", {
 - The `pgTable` function requires to be passed a table name, and the different columns of our table
   - for the first column, we give it a key of "id" and we use the uuid function to name it "id"
   - in most cases, the key and the name will be the exact same value
+  - for the id property, we could have also written `id: serial("id").primaryKey()` to get an autoincremental value
  
 
 ---
