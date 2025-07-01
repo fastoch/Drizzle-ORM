@@ -110,7 +110,7 @@ export default defineConfig({
     connectionString: process.env.DATABASE_URL as string
   },
   verbose: true,
-  
+  strict: true
 ));
 ```
 - We need to specify the location of our schema.ts file.  
@@ -118,9 +118,14 @@ export default defineConfig({
   - whenever I do a DB migration, the migration files will be generated inside the provided location
 - the `driver` option specifies which DB we are using (postgreSQL in our example)
 - the `dbCredentials` is for allowing the connection to our database
-- enabling the `verbose` option is to know exactly what changes will be made when we generate our migrations
-- 
+- enabling the `verbose` option is to know exactly what changes will be made when we run a migration
+- enabling the `strict` option is to be prompted for confirming the changes we're about to make to our DB
 
+# schema.ts
+
+```ts
+
+```
 
 ---
 @7/56
