@@ -143,6 +143,32 @@ export const UserTable = pgTable("user", {
   - in most cases, the key and the name will be the exact same value
   - for the id property, we could have also written `id: serial("id").primaryKey()` to get an autoincremental value
  
+The above code snippet is a simple schema for a single table.  
+Let's see how to do a migration for that.
+
+# Migration example
+
+Now that we have our config file and our schema set up, we can do our migration just by running `npx drizzle-kit generate:<driver>`  
+If using the postgres.js driver, the command will be `npx drizzle-kit generate:pg`   
+
+This command will generate a migration file (.sql format) for us that has everything we need.  
+For example:
+```sql
+CREATE TABLE IF NOT EXISTS "user" (
+    "id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+    "name" varchar(255) NOT NULL
+);
+``` 
+
+If we want to remove this migration for some reason: 
+- run `npx drizzle-kit drop`
+- select the migration file you want to delete
+
+What is recommended is to add this to our package.json scripts:
+```json
+
+```
+
 
 ---
 @11/56
