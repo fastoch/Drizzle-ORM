@@ -247,7 +247,22 @@ Now that we have configure our db.ts file, we can access our database from anywh
 # main.ts
 
 Inside our /src folder, we should have a `main.ts` file.  
+Check this file to see how we can interact with our database  
+
+Once our main.ts file is ready, we can run `npm run dev` to execute it.  
+In our example, this will use an async function to:
+- add a new user to our database
+- then retrieve it from the DB
+- log our first user details to the console
+
+We will also see the SQL queries thanks to the `logger: true` option in our `db.ts` file.  
+
+In the following screenshot, you can see the 2 queries and the user information:  
+![alt text](image.png)
+
+# Schema Advanced
+
 
 
 ---
-@18/56
+@19/56
