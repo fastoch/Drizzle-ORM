@@ -6,7 +6,9 @@ import { UserTable } from "./drizzle/schema"  // required to interact with the t
 async function main() {
   // add a new user to the database
   await db.insert(UserTable).values({ 
-    name: "John Doe" 
+    name: "John Doe",
+    age: 43,
+    email: "fake@email.com"
   })
   // query the first user from the database
   const firstUser = await db.query.UserTable.findFirst()

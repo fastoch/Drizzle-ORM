@@ -142,7 +142,7 @@ export const UserTable = pgTable("user", {
 - The `pgTable` function requires to be passed a table name, and the different columns of our table
   - for the first column, we give it a key of "id" and we use the uuid function to name it "id"
   - in most cases, the key and the name will be the exact same value
-  - for the id property, we could have also written `id: serial("id").primaryKey()` to get an autoincremental value
+  - for this id property, we could have also written `id: serial("id").primaryKey()` to get an autoincremental value
  
 The above code snippet is a simple schema for a single table.  
 Let's see how to do a migration for that.
